@@ -1,0 +1,26 @@
+version: '3.9'
+
+x-logging: &logging
+  logging:
+    driver: json-file
+    options:
+      max-size: 100m
+      max-file: "3"
+      tag: '{{.ImageName}}|{{.Name}}|{{.ImageFullID}}|{{.FullID}}'
+
+services:
+  webhook:
+    image: webhook:local
+    build:
+      context: .
+      dockerfile: Dockerfile.webhook
+      args:
+        - BUILD_TARGET=${WEBHOOK_SRC_BUILD_TARGET:-$(git describe --tags $(git rev-list --tags --max-count=1))}
+        - SRC_REPO=${WEBHOOK_SRC_REPO:-https://github.com/adnanh/webhook.git}
+    stop_grace_period: 1m
+    pull_policy: build
+    ports:
+      - "9000:9000"
+    restart: unless-stopped
+    environment: [ "CC_ADDRESS=${CC_ADDRESS}", "EC_ADDRESS=${EC_ADDRESS}" ]
+    volumes: [ "./webhook-scripts:/var/scripts:ro", "./webhook-config:/config:ro" ]

@@ -1,0 +1,8 @@
+- id: cc
+  execute-command: "/var/scripts/check-ccsync.sh"
+  command-working-directory: "/var/lib/webhook"
+  include-command-output-in-response: true
+- id: ec
+  execute-command: "/var/scripts/check-ecsync.sh"
+  command-working-directory: "/var/lib/webhook"
+  include-command-output-in-response: true
