@@ -10,10 +10,11 @@ x-logging: &logging
 
 services:
   webhook:
+    container_name: node_health
     image: webhook:local
     build:
       context: .
-      dockerfile: Dockerfile.webhook
+      dockerfile: Dockerfile
       args:
         - BUILD_TARGET=${WEBHOOK_SRC_BUILD_TARGET:-$(git describe --tags $(git rev-list --tags --max-count=1))}
         - SRC_REPO=${WEBHOOK_SRC_REPO:-https://github.com/adnanh/webhook.git}
@@ -22,5 +23,11 @@ services:
     ports:
       - "9000:9000"
     restart: unless-stopped
-    environment: [ "CC_ADDRESS=${CC_ADDRESS}", "EC_ADDRESS=${EC_ADDRESS}" ]
-    volumes: [ "./webhook-scripts:/var/scripts:ro", "./webhook-config:/config:ro" ]
+    environment: 
+      - "CC_ADDRESS=${CC_ADDRESS}"
+      - "CC_MIN_PEERS=${CC_MIN_PEERS:-10}"
+      - "EC_ADDRESS=${EC_ADDRESS}"
+      - "EC_MIN_PEERS=${EC_MIN_PEERS:-10}"
+    volumes: 
+      - "./webhook-scripts:/var/scripts:ro"
+      - "./webhook-config:/config:ro"

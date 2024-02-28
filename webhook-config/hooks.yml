@@ -2,7 +2,9 @@
   execute-command: "/var/scripts/check-ccsync.sh"
   command-working-directory: "/var/lib/webhook"
   include-command-output-in-response: true
+  include-command-output-in-response-on-error: true
 - id: ec
   execute-command: "/var/scripts/check-ecsync.sh"
   command-working-directory: "/var/lib/webhook"
   include-command-output-in-response: true
+  include-command-output-in-response-on-error: true
