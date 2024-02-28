@@ -1,6 +1,6 @@
 # Overview
 
-Docker Compose file for monitoring Ethereum node shync status over HTTP
+Docker Compose project for monitoring Ethereum node sync status over HTTP
 
 # How to run:
 
