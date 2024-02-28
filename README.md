@@ -1,13 +1,23 @@
 # Overview
 
-Docker Compose for healt monitoring of Ethereum node
+Docker Compose file for monitoring Ethereum node shync status over HTTP
 
-`cp .env.example .env`, then `nano .env` and adjust values for CL, EL. 
+# How to run:
 
-`nano network.yaml` to adjust ext networks
+`cp .env.example .env`, then `nano .env` and adjust values for CL, EL addresses. 
 
-To start the container 
+`nano network.yaml` to set external network
+
+Start the container:
 
 `docker compose build && docker compose up -d`
 
-Inspired by https://github.com/CryptoManufaktur-io
+Check sync status: `curl http://localhost:9000/hooks/cc` and `curl http://localhost:9000/hooks/ec`
+
+Returns HTTP 200 if node is synced and has enough peers, otherwise HTTP 500
+
+# Credits:
+
+https://github.com/CryptoManufaktur-io
+
+https://github.com/adnanh/webhook
