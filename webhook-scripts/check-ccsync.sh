@@ -16,7 +16,7 @@ if [ $? -ne 0 ]; then
 fi
 PEERS=$(echo "${PEERS}" | jq -r .data.connected)
 if [ "${SYNCING}" = "false" -a "${OPTIMISTIC}" = "false" -a "${EL_OFFLINE}" = "false" -a "${PEERS}" -ge "$CC_MIN_PEERS" ]; then
-  echo "OK"
+  echo "OK, PEERS: ${PEERS}"
   exit 0
 else
   echo "ERROR: Node syncing or not enough peers"

@@ -15,7 +15,7 @@ fi
 PEERS_HEX=$(echo "${PEERS_HEX}" | jq -r .result | awk -F'0x' '{ print $2 }')
 PEERS=$(echo "ibase=16; ${PEERS_HEX}" | awk '{ print $1 " " toupper($2) }' | bc -l)
 if [ "${SYNC}" = "false" -a "${PEERS}" -ge "$EC_MIN_PEERS" ]; then
-  echo "OK"
+  echo "OK, PEERS: ${PEERS}"
   exit 0
 else
   echo "ERROR: Node syncing or not enough peers"
