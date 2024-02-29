@@ -31,3 +31,4 @@ services:
     volumes: 
       - "./webhook-scripts:/var/scripts:ro"
       - "./webhook-config:/config:ro"
+    <<: *logging
