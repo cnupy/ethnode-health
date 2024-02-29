@@ -21,7 +21,7 @@ services:
     stop_grace_period: 1m
     pull_policy: build
     ports:
-      - "9000:9000"
+      - "${LISTEN_ADDRESS:-0.0.0.0:9000}:9000"
     restart: unless-stopped
     environment: 
       - "CC_ADDRESS=${CC_ADDRESS}"
