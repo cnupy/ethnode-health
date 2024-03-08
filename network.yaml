@@ -1,4 +1,4 @@
 networks:
   default:
-    name: ${NETWORK_NAME:-health_check_net}
+    name: ${NETWORK_NAME:-node_health_net}
     external: ${NETWORK_IS_EXTERNAL:-false}
