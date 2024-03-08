@@ -1,16 +1,20 @@
 # Overview
 
-Docker Compose project for monitoring Ethereum node sync status over HTTP
+HTTP service for monitoring Ethereum node sync status and peer count
 
-Useful if you want to deploy Traefik in failover mode to monitor service health
+that can be used to deploy HA Ethereum nodes with Traefik in failover mode.
+
+See: https://github.com/cnupy/traefik-eth-node-ha
 
 # How to run
 
-`cp .env.example .env`, then `nano .env` and set the consensus and execution layer client URLs. 
+`cp .env.example .env` and edit `.env` to set the consensus and execution layer client URLs, 
 
-`nano network.yaml` to set external network
+network name and whether the network is internal or external. If the Ethereum node is deployed in Docker on 
 
-Start the container:
+the same host set `NETWORK_NAME` to the same network as the node and `NETWORK_IS_EXTERNAL` to true.     
+
+To start the container execute:
 
 `docker compose build && docker compose up -d`
 
