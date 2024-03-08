@@ -12,8 +12,8 @@ if [ $? -ne 0 ]; then
   echo "ERROR: Can't get peers data"
   exit 1
 fi
-PEERS_HEX=$(echo "${PEERS_HEX}" | jq -r .result | awk -F'0x' '{ print $2 }')
-PEERS=$(echo "ibase=16; ${PEERS_HEX}" | awk '{ print $1 " " toupper($2) }' | bc -l)
+PEERS_HEX=$(echo "${PEERS_HEX}" | jq -r .result)
+PEERS=$(printf "%d" "${PEERS_HEX}")
 if [ "${SYNC}" = "false" -a "${PEERS}" -ge "$EC_MIN_PEERS" ]; then
   echo "OK, PEERS: ${PEERS}"
   exit 0

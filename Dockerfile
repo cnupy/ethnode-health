@@ -17,7 +17,7 @@ FROM alpine:3
 ARG USER=webhook
 ARG UID=11000
 
-RUN apk add --no-cache tini curl jq bc
+RUN apk add --no-cache tini curl jq
 
 # See https://stackoverflow.com/a/55757473/12429735RUN
 RUN adduser \

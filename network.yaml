@@ -1,4 +1,4 @@
 networks:
   default:
-    name: rocketpool_net
-    external: true
+    name: ${NETWORK_NAME:-health_check_net}
+    external: ${NETWORK_IS_EXTERNAL:-false}
